@@ -171,7 +171,7 @@ class Hijri
         $D = self::$D[static::$lang][$w];
         $l = self::$l[static::$lang][$w];
         $ml = static::$jdl[$i] - static::$jdl[$i - 1]; // Month Length
-        list($id['month'], $id['day'], $id['year'], $id['ln'], $id['ml'],$id['month_full'],$id['month_brief'],$id['day'],$id['day_al']) = explode('/', "$m/$d/$y/$iln/$ml/$F/$M/$D/$l");
+        list($id['month'], $id['day'], $id['year'], $id['ln'], $id['ml'],$id['month_full'],$id['month_brief'],$id['dayofWeek'],$id['dayofWeek_al']) = explode('/', "$m/$d/$y/$iln/$ml/$F/$M/$D/$l");
         //dd($id);
         return $id;
     }
