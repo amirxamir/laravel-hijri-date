@@ -151,7 +151,7 @@ class Hijri
      *                  (Births of New Moons)", int: The length of current month.
      * @thanks to Robert Gent method maker (http://www.phys.uu.nl/~vgent/islam/ummalqura.htm)
      */
-    public static function setFromGregorianDMY($day = 20, $month = 02, $year = 2030)
+    public function setFromGregorianDMY($day = 20, $month = 02, $year = 2030)
     {
         $jd = gregoriantojd($month, $day, $year);
         $w=date('w', mktime(0, 0, 0, $month, $day, $year));
