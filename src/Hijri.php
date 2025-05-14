@@ -151,9 +151,10 @@ class Hijri
      *                  (Births of New Moons)", int: The length of current month.
      * @thanks to Robert Gent method maker (http://www.phys.uu.nl/~vgent/islam/ummalqura.htm)
      */
-    public function setFromGregorianDMY($day = 20, $month = 02, $year = 2030)
+    public static function setFromGregorianDMY($day = 20, $month = 02, $year = 2030)
     {
         $jd = gregoriantojd($month, $day, $year);
+        $w=date('w', mktime(0, 0, 0, $month, $day, $year));
         $mjd = $jd - 2400000;
         foreach (static::$jdl as $i => $v) {
             if ($v > ($mjd - 1)) {
@@ -164,9 +165,13 @@ class Hijri
         $ii = floor(($i - 1) / 12);
         $y = 1300 + $ii; // year
         $m = $i - 12 * $ii; // month
+        $F = self::$uF[static::$lang][$m];
+        $M = self::$uM[static::$lang][$m];
         $d = $mjd - static::$jdl[$i - 1]; //day
+        $D = self::$D[static::$lang][$w];
+        $l = self::$l[static::$lang][$w];
         $ml = static::$jdl[$i] - static::$jdl[$i - 1]; // Month Length
-        list($id['month'], $id['day'], $id['year'], $id['ln'], $id['ml']) = explode('/', "$m/$d/$y/$iln/$ml");
+        list($id['month'], $id['day'], $id['year'], $id['ln'], $id['ml'],$id['month_full'],$id['month_brief'],$id['day'],$id['day_al']) = explode('/', "$m/$d/$y/$iln/$ml/$F/$M/$D/$l");
         //dd($id);
         return $id;
     }
